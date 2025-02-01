@@ -6,7 +6,7 @@
 #define LED_PIN_YELLOW 12 // Definição do pino do LED amarelo
 #define LED_PIN_GREEN 13 // Definição do pino do LED verde
 
-int led_state = 0; // Variável para controlar o estado dos LEDs
+int led_state = 1; // Variável para controlar o estado dos LEDs
 
 // Função para inicializar os LEDs
 void init_leds() {
@@ -63,8 +63,12 @@ int main()
     // Inicializa o temporizador para piscar os LEDs a cada 3 segundos
     add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer);
 
+    // Liga o LED vermelho
+    set_leds(true, false, false);
+
+    // Loop principal
     while (true) {
-        printf("Hello, world!\n");
+        printf("Tempo de execução até o momento: %d segundos\n", to_ms_since_boot(get_absolute_time())/1000);
         // Aguarda 10 segundos para reduzir o uso da CPU
         sleep_ms(10000);
     }
